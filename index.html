@@ -661,6 +661,7 @@
       background: rgba(0, 0, 0, 0.7);
       z-index: 998;
       opacity: 0;
+      pointer-events: none;
       transition: opacity 0.3s ease;
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
@@ -668,6 +669,7 @@
 
     .mobile-overlay.active {
       opacity: 1;
+      pointer-events: auto;
     }
 
     /* Responsive */
