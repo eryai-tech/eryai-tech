@@ -571,9 +571,9 @@
       position: fixed;
       top: 0;
       right: -100%;
-      width: 280px;
+      width: 320px;
       height: 100vh;
-      background: var(--surface);
+      background: var(--bg);
       border-left: 1px solid var(--border);
       padding: 6rem 2rem 2rem;
       transition: right 0.3s ease;
@@ -587,45 +587,60 @@
 
     .mobile-menu ul {
       flex-direction: column;
-      gap: 2rem;
-      align-items: flex-start;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .mobile-menu li {
+      width: 100%;
     }
 
     .mobile-menu a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: 500;
-      transition: color 0.2s ease;
       display: block;
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      text-align: left;
     }
 
     .mobile-menu a:hover {
-      color: var(--text-primary);
+      background: var(--surface);
+      border-color: var(--accent);
+      transform: translateX(4px);
     }
 
     .mobile-menu .nav-cta {
-      width: 100%;
-      text-align: center;
-      display: block;
       background: var(--accent);
-      color: white !important;
-      padding: 0.75rem 1.5rem;
-      border-radius: 6px;
+      color: white;
+      border-color: var(--accent);
+      text-align: center;
       font-weight: 600;
-      transition: all 0.2s ease;
     }
 
     .mobile-menu .nav-cta:hover {
       background: var(--accent-hover);
+      border-color: var(--accent-hover);
+      transform: translateX(0) translateY(-2px);
     }
 
     .mobile-menu .lang-switcher {
       width: 100%;
+      margin-top: 1rem;
     }
 
     .mobile-menu .lang-switcher select {
       width: 100%;
+      padding: 1rem 1.5rem;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
     }
 
     /* Mobile Overlay */
