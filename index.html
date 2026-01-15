@@ -591,10 +591,33 @@
       align-items: flex-start;
     }
 
+    .mobile-menu a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      display: block;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--text-primary);
+    }
+
     .mobile-menu .nav-cta {
       width: 100%;
       text-align: center;
       display: block;
+      background: var(--accent);
+      color: white !important;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .mobile-menu .nav-cta:hover {
+      background: var(--accent-hover);
     }
 
     .mobile-menu .lang-switcher {
