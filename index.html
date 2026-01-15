@@ -1041,7 +1041,7 @@
         <div class="logo">ery<span>.ai</span></div>
         <ul class="footer-links">
           <li><a href="https://ery-ai-demo-restaurang.vercel.app" target="_blank">Demo</a></li>
-          <li><a href="/cdn-cgi/l/email-protection#d9b0b7bfb699bcaba0b8b0f7adbcbab1" data-i18n="footer.contact">Kontakt</a></li>
+          <li><a href="mailto:eric@eryai.tech" data-i18n="footer.contact">Kontakt</a></li>
           <li><a href="#waitlist">Waitlist</a></li>
         </ul>
       </div>
@@ -1051,7 +1051,7 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     // Translation dictionary
     const translations = {
       no: {
@@ -1389,6 +1389,15 @@
       const savedLang = localStorage.getItem('eryai-lang');
       const detectedLang = savedLang || detectLanguage();
       updateTranslations(detectedLang);
+      
+      // Add touch event for hamburger menu (mobile fix)
+      const hamburger = document.getElementById('hamburger');
+      if (hamburger) {
+        hamburger.addEventListener('touchstart', function(e) {
+          e.preventDefault();
+          toggleMobileMenu();
+        }, { passive: false });
+      }
     });
 
     // Smooth scroll
