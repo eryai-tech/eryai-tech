@@ -902,6 +902,33 @@
         }
       }
     }
+    
+    // Language change - must be in head to be available for onchange
+    function changeLanguage(lang) {
+      if (typeof updateTranslations === 'function') {
+        updateTranslations(lang);
+      } else {
+        // Store for later if updateTranslations not ready yet
+        window.pendingLang = lang;
+      }
+    }
+    
+    // Waitlist submission - must be in head to be available for onclick
+    function submitWaitlist() {
+      const email = document.getElementById('email-input').value;
+      const currentLang = window.currentLang || 'no';
+      const alerts = window.translations ? window.translations[currentLang].alerts : {
+        success: 'Takk! Vi kontakter deg på {email} innen 24 timer.',
+        error: 'Vennligst skriv inn en gyldig e-postadresse'
+      };
+      
+      if (email && email.includes('@')) {
+        alert(alerts.success.replace('{email}', email));
+        document.getElementById('email-input').value = '';
+      } else {
+        alert(alerts.error);
+      }
+    }
   </script>
 </head>
 <body>
@@ -1081,8 +1108,8 @@
   </footer>
 
   <script>
-    // Translation dictionary
-    const translations = {
+    // Translation dictionary - global for submitWaitlist
+    window.translations = {
       no: {
         nav: {
           problem: "Problem",
@@ -1329,8 +1356,8 @@
       }
     };
 
-    // Current language
-    let currentLang = 'no';
+    // Current language - global for submitWaitlist
+    window.currentLang = 'no';
 
     // Detect user's language based on browser settings
     function detectLanguage() {
@@ -1349,7 +1376,7 @@
     // Get nested translation value
     function getTranslation(key, lang) {
       const keys = key.split('.');
-      let value = translations[lang];
+      let value = window.translations[lang];
       
       for (const k of keys) {
         if (value && value[k] !== undefined) {
@@ -1364,7 +1391,7 @@
 
     // Update page with translations
     function updateTranslations(lang) {
-      currentLang = lang;
+      window.currentLang = lang;
       
       // Update all elements with data-i18n
       document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -1387,11 +1414,6 @@
       
       // Save to localStorage
       localStorage.setItem('eryai-lang', lang);
-    }
-
-    // Change language
-    function changeLanguage(lang) {
-      updateTranslations(lang);
     }
 
     // Initialize language on page load
@@ -1422,18 +1444,12 @@
       });
     });
 
-    // Waitlist submission
-    function submitWaitlist() {
-      const email = document.getElementById('email-input').value;
-      const alerts = translations[currentLang].alerts;
-      
-      if (email && email.includes('@')) {
-        alert(alerts.success.replace('{email}', email));
-        document.getElementById('email-input').value = '';
-      } else {
-        alert(alerts.error);
-      }
-    }
-
     // Allow Enter key to submit
-    document.getElementById('email-input')
+    document.getElementById('email-input').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        submitWaitlist();
+      }
+    });
+  </script>
+</body>
+</html>
