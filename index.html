@@ -80,6 +80,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.25rem 2rem;
+      position: relative;
     }
 
     .logo {
@@ -544,7 +545,10 @@
       cursor: pointer;
       padding: 12px;
       z-index: 1001;
-      position: relative;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
       background: transparent;
       border: none;
       -webkit-tap-highlight-color: transparent;
@@ -556,6 +560,8 @@
       height: 2px;
       background: var(--text-primary);
       transition: all 0.3s ease;
+      pointer-events: none;
+      display: block;
     }
 
     .hamburger.active span:nth-child(1) {
