@@ -542,8 +542,13 @@
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
-      padding: 8px;
+      padding: 12px;
       z-index: 1001;
+      position: relative;
+      background: transparent;
+      border: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .hamburger span {
@@ -608,6 +613,8 @@
       font-weight: 500;
       transition: all 0.2s ease;
       text-align: left;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .mobile-menu a:hover {
@@ -655,6 +662,8 @@
       z-index: 998;
       opacity: 0;
       transition: opacity 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .mobile-overlay.active {
@@ -892,11 +901,11 @@
   <nav>
     <div class="container">
       <div class="logo">ery<span>.ai</span></div>
-      <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+      <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Öppna meny">
         <span></span>
         <span></span>
         <span></span>
-      </div>
+      </button>
       <ul>
         <li><a href="#problem" data-i18n="nav.problem">Problem</a></li>
         <li><a href="#solution" data-i18n="nav.solution">Løsning</a></li>
